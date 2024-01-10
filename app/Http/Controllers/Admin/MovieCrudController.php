@@ -38,6 +38,11 @@ class MovieCrudController extends CrudController
                 'label' => 'Release Date (blank if unavailable)',
                 'type' => 'date'
             ],
+            [
+                'name'=> 'language',
+                'label' => 'Original Language',
+                'type'=> 'text'
+            ],
             [    // SelectMultiple = n-n relationship (with pivot table)
                 'label'     => "Genres",
                 'type'      => ($show ? "select": 'select_multiple'),

@@ -3,3 +3,4 @@
 
 <x-backpack::menu-item title="Genres" icon="la la-question" :link="backpack_url('genre')" />
 <x-backpack::menu-item title="Producers" icon="la la-question" :link="backpack_url('producer')" />
+<x-backpack::menu-item title="Movies" icon="la la-question" :link="backpack_url('movie')" />

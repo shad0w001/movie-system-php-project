@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProducerRequest extends FormRequest
+class MovieRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,10 @@ class ProducerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:30',
-            'date_of_birth' => 'required|before_or_equal:now',
-            'gender' => 'in:Male,Female,Prefer not to say'
+            'name' => 'required|min:5|max:50',
+            'status' => 'required|in:Planned,In Production,Released,Cancelled',
+            'release_date' => 'required_if:status,Planned|required_if:status,In Production|required_if:status,Released',
+            'score' => 'required_if:status,Released|numeric|between:0,100',
         ];
     }
 
@@ -51,8 +52,7 @@ class ProducerRequest extends FormRequest
     public function messages()
     {
         return [
-            'date_of_birth.before_or_equal' => 'The entered birth date must be a valid date.',
-            'gender.in' => 'The specified gender has to be either Male, Female or Prefer not to say'
+            //
         ];
     }
 }

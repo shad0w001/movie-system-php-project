@@ -27,6 +27,13 @@ class MovieCrudController extends CrudController
                 'type'=> 'text'
             ],
             [
+                'label' => "Movie banner",
+                'name' => "image",
+                'type' => ($show ? 'view' : 'upload'),
+                'view' => 'partials/image',
+                'upload' => true,
+            ],
+            [
                 'name' => 'release_date',
                 'label' => 'Release Date (blank if unavailable)',
                 'type' => 'date'
@@ -93,19 +100,12 @@ class MovieCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
-
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        $this->crud->set('show.setFromDb', false);
+        $this->crud->addColumns($this->getFieldsData(TRUE));
     }
 
     protected function setupShowOperation()
     {
-        // by default the Show operation will try to show all columns in the db table,
-        // but we can easily take over, and have full control of what columns are shown,
-        // by changing this config for the Show operation
         $this->crud->set('show.setFromDb', false);
         $this->crud->addColumns($this->getFieldsData(TRUE));
     }

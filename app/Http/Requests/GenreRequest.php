@@ -26,7 +26,7 @@ class GenreRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:20',
-            'description' => 'required|min:5|max:30'
+            'description' => 'required|min:5|max:100'
         ];
     }
 
@@ -51,7 +51,8 @@ class GenreRequest extends FormRequest
     {
         return [
             'name.min' => "The genre's name cannot be shorter then 3 symbols",
-            'name.max' => "The genre's name is too long (20 characters limit)."
+            'name.max' => "The genre's name is too long (20 characters limit).",
+            'description.max' => 'The description must not exceede 100 characters.'
         ];
     }
 }

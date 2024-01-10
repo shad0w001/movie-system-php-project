@@ -19,6 +19,32 @@ class ProducerCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    private function getFieldsData($show = FALSE) {
+        return [
+            [
+                'name'=> 'name',
+                'label' => 'Name',
+                'type'=> 'text'
+            ],
+            [
+                'name' => 'date_of_birth',
+                'label' => 'Date of Birth',
+                'type' => 'date'
+            ],
+            [
+                'name' => 'gender',
+                'label' => "Gender",
+                'type' => 'enum',
+
+                'options' => [
+                    'Male' => 'Male',
+                    'Female' => 'Female',
+                    'Prefer not to say' => 'Prefer not to say'
+                ]
+            ]
+        ];
+    }
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      * 
@@ -29,6 +55,8 @@ class ProducerCrudController extends CrudController
         CRUD::setModel(\App\Models\Producer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/producer');
         CRUD::setEntityNameStrings('producer', 'producers');
+
+        $this->crud->addFields($this->getFieldsData());
     }
 
     /**

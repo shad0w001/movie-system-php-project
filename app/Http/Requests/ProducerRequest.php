@@ -25,7 +25,9 @@ class ProducerRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|min:5|max:30',
+            'date_of_birth' => 'required|before_or_equal:now',
+            'gender' => 'in:Male,Female,Prefer not to say'
         ];
     }
 
@@ -49,7 +51,8 @@ class ProducerRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'date_of_birth.before_or_equal' => 'The entered birth date must be a valid date.',
+            'gender.in' => 'The specified gender has to be either Male, Female or Unspecified'
         ];
     }
 }

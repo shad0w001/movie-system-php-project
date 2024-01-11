@@ -26,7 +26,7 @@ class MovieRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5|max:50',
-            'image' => 'nullable|image|dimensions:max_width=2000,max_height=3000',
+            'image' => 'required|image|dimensions:max_width=2000,max_height=3000|mimes:jpg,bmp,png,jpeg,svg,webp',
             'status' => 'required|in:Planned,In Production,Released,Cancelled',
             'release_date' => 'required_if:status,Planned|required_if:status,In Production|required_if:status,Released',
             'language' => 'required|min:5|max:20',
@@ -54,7 +54,7 @@ class MovieRequest extends FormRequest
     public function messages()
     {
         return [
-            'image.image' => 'The movie banner must be in a valid format (jpg, jpeg, png, bmp, gif, svg, or webp).',
+            'image.image' => 'The movie banner must be in a valid format (jpg, jpeg, png, bmp, svg, or webp).',
             'image.dimensions' => 'The dimensions of the file cannot exceede (2000px by 3000px)',
             'release_date.required_if' => 'You cannot set an expected release date to an already canceled movie.',
             'language.required' => 'You must provide an original language.',

@@ -9,7 +9,7 @@ class MovieController extends Controller
 {
     public function index()
     {
-        $movies = Movie::paginate(10);
+        $movies = Movie::paginate(15);
 
         return view('movies.index', compact('movies'));
     }
@@ -17,7 +17,7 @@ class MovieController extends Controller
     public function search(Request $request)
     {
         if(!$request->filled('search')){
-            $movies = Movie::paginate(10);
+            $movies = Movie::paginate(15);
             return view('movies.index', compact('movies'));
         }
 
@@ -32,15 +32,21 @@ class MovieController extends Controller
 
         $movies=Movie::where('name','like','%'.$filteredSearchTerm.'%')
         ->orWhere('release_date','like','%'.$filteredSearchTerm.'%')
-        ->orWhereHas('genres', function ($query) use ($searchTerm) {
-            $query->where('name', 'like', "%$searchTerm%");
+        ->orWhere('status','like','%'.$filteredSearchTerm.'%')
+        ->orWhereHas('genres', function ($query) use ($filteredSearchTerm) {
+            $query->where('name', 'like', "%$filteredSearchTerm%");
         })
-        ->orWhereHas('producers', function ($query) use ($searchTerm) {
-            $query->where('name', 'like', "%$searchTerm%");
+        ->orWhereHas('producers', function ($query) use ($filteredSearchTerm) {
+            $query->where('name', 'like', "%$filteredSearchTerm%");
         })
-        ->paginate(10);
+        ->paginate(15);
 
         return view('movies.index', ['movies' => $movies]);
         
+    }
+
+    public function show(Movie $movie)
+    {
+        return view('movies.movie', compact('movie'));
     }
 }

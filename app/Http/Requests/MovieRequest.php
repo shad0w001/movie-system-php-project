@@ -26,9 +26,9 @@ class MovieRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5|max:50',
-            'image' => 'image|dimensions:max_width=2000,max_height=3000',
+            'image' => 'nullable|image|dimensions:max_width=2000,max_height=3000',
             'status' => 'required|in:Planned,In Production,Released,Cancelled',
-            'release_date' => 'date|required_if:status,Planned|required_if:status,In Production|required_if:status,Released',
+            'release_date' => 'required_if:status,Planned|required_if:status,In Production|required_if:status,Released',
             'language' => 'required|min:5|max:20',
             'score' => 'numeric|required_if:status,Released|between:0,100',
         ];

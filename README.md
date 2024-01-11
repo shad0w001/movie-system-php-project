@@ -58,7 +58,7 @@ Every table contains these, as they come pre-configured with migrations, they ar
   - Displays the information for a single movie based on the provided ID.
 
 ### IndexController
-    The index controller is static, it's methods simply display static views and will be discussed in the Routes section.
+  - The index controller is static, it's methods simply display static views and will be discussed in the Routes section.
 
 ## Models
 ### Movie Model

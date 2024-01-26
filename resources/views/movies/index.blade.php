@@ -230,7 +230,7 @@
             <p>Status: {{ $movie->status }}</p>
             <p> Release Date: {{ $movie->release_date ?: 'Undefined' }}</p>
 			<button>
-                <a href="{{ route('movies.show', $movie) }}" target="_blank" class="subtitle-link">
+                <a style="text-decoration:none" href="{{ route('movies.show', $movie) }}" target="_blank" class="subtitle-link">
                     Click to view more
                 </a>
             </button>

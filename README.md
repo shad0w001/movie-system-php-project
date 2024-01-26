@@ -77,6 +77,9 @@ Every table contains these, as they come pre-configured with migrations, they ar
 - `/movies`: Index page for movies, includes a search bar.
 - `/movies/search`: Search categories.
 
+### Admin
+- `/admin`: Access to the admin panel (requires a login or registration).
+
 
 ## Features
 
